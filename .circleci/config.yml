@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+
+    steps:
+      - checkout
+      - run:
+          name: versions
+          command: |
+            node --version
+            yarn --version
+            npm --version
+      - restore_cache:
+          key: node-modules-cache-{{ checksum: "package.json" }}
+      - run:
+          name: yarn install
+          command: yarn install
+      - save_cache:
+          key: node-modules-cache-{{ checksum: "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: yarn test

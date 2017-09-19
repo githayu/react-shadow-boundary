@@ -1,0 +1,45 @@
+{
+  "name": "react-shadow-boundary",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack -p"
+  },
+  "main": "dist/index.js",
+  "author": "Hayu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/githayu/react-shadow-boundary"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "shadow-dom"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "object-hash": "^1.1.8",
+    "postcss": "^6.0.11",
+    "prop-types": "^15.5.10",
+    "react": "next",
+    "react-dom": "next"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.8",
+    "@types/lodash": "^4.14.74",
+    "@types/object-hash": "^0.5.29",
+    "@types/prop-types": "^15.5.1",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "awesome-typescript-loader": "^3.2.3",
+    "eslint-plugin-typescript": "^0.7.0",
+    "jest": "^21.1.0",
+    "ts-jest": "^21.0.1",
+    "typescript": "^2.5.2",
+    "typescript-eslint-parser": "^8.0.0",
+    "webpack": "^3.6.0"
+  }
+}
