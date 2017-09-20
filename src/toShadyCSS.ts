@@ -23,12 +23,6 @@ export default function toShadyCSS(css: string, scope: string, prefix = 'shady')
         .replace(/\(|\)/g, '');
     }
 
-    if (rule.selector.includes(' /deep/ ')) {
-      addScope = false;
-
-      rule.selector = rule.selector.replace('/deep/ ', '');
-    }
-
     if (addScope) {
       rule.selector = rule.selector.concat(`[data-scope=${scope}]`);
     }

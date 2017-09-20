@@ -12,9 +12,3 @@ test(':host-context selector', () => {
 
   expect(styleElement.innerText).toBe('.is-test .shady-scope {}')
 });
-
-test('/deep/ selector', () => {
-  const styleElement = toShadyCSS(':host /deep/ h1 {}', 'scope');
-
-  expect(styleElement.innerText).toBe('.shady-scope h1 {}');
-});
