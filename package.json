@@ -1,9 +1,11 @@
 {
   "name": "react-shadow-boundary",
+  "description": "encapsulate style with shadow dom react component",
   "version": "0.0.1",
   "scripts": {
     "test": "jest",
-    "build": "webpack -p"
+    "build": "tsc",
+    "clean": "rm -Rf ./dist/*"
   },
   "main": "dist/index.js",
   "author": "Hayu",
@@ -34,12 +36,11 @@
     "@types/prop-types": "^15.5.1",
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
-    "awesome-typescript-loader": "^3.2.3",
+    "eslint": "^4.7.1",
     "eslint-plugin-typescript": "^0.7.0",
     "jest": "^21.1.0",
     "ts-jest": "^21.0.1",
     "typescript": "^2.5.2",
-    "typescript-eslint-parser": "^8.0.0",
-    "webpack": "^3.6.0"
+    "typescript-eslint-parser": "^8.0.0"
   }
 }

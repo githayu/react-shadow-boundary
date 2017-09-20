@@ -1,10 +1,10 @@
 # React Shadow Boundary
-> React component shadow-dom polyfill
+> encapsulate style with shadow dom react component
 
 ## installation
 Using yarn:
 ```sh
-$ yarn add github.com/githayu/react-shadow-boundary
+yarn add github:githayu/react-shadow-boundary#dev
 ```
 
 <!-- ```sh
@@ -30,7 +30,7 @@ module.exports = {
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShadowDOM from 'react-shadow-scope';
+import ShadowDOM from 'react-shadow-boundary';
 
 // css-loader
 import styles from './styles.css';
@@ -58,8 +58,8 @@ ReactDOM.render(<MyComponent />, document.getElementById('app'));
 ## Prop Types
 | Property | Type | Default | Description |
 | -------- |:----:|:-------:|:------------|
-| styles   | string, object, (string\|object)[] || shadow styles. For details see usage |
-| native   | boolean | `true` | use Shadow DOM |
-| shadowMode | ShadowRootInit | `{ mode: 'open' }` | Mode of Shadow DOM |
-| shadyPrefix | string | `'shady'` | shady scope prefix |
-| hashLength | number | `10` | The length of shady hash
+| styles   | string, object, (string\|object)[] || Encapsulate styles. For details see usage |
+| native   | boolean | `true` | Use shadow DOM if available |
+| shadowRoot | ShadowRootInit | `{ mode: 'open' }` | Shadow Root options |
+| shadyPrefix | string | `'shady'` | Shady scope class prefix |
+| hashLength | number | `10` | Shady scope class hash length |
