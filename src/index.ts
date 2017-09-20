@@ -1,1 +1,0 @@
-export { default as ShadowDOM } from './ShadowDOM';

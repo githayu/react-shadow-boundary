@@ -1,4 +1,5 @@
-# React Shadow Boundary
+# react-shadow-boundary
+[![CircleCI](https://circleci.com/gh/githayu/react-shadow-boundary.svg?style=svg)](https://circleci.com/gh/githayu/react-shadow-boundary)
 > encapsulate style with shadow dom react component
 
 ## installation
@@ -12,21 +13,6 @@ $ yarn add react-shadow-boundary
 ``` -->
 
 ## Usage
-### webpack.config.js
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader'
-      }
-    ]
-  }
-}
-```
-
-### MyComponent.js
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -41,7 +27,7 @@ class MyComponent extends React.Component {
       <ShadowDOM
         styles={[
           ':host { background: #fff }',
-          styles,
+          styles.toString(),
           import(/* webpackChunkName: async-styles */ 'async-styles.css')
         ]}
       >
@@ -53,6 +39,20 @@ class MyComponent extends React.Component {
 }
 
 ReactDOM.render(<MyComponent />, document.getElementById('app'));
+```
+
+### webpack.config.js
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: 'css-loader'
+      }
+    ]
+  }
+}
 ```
 
 ## Prop Types

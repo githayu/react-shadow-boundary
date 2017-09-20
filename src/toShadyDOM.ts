@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
-export default function applyScope(element: React.ReactChild, scopeName = 'shady') {
-  if (_.isString(element) || _.isNumber(element)) {
+export default function applyScope(element: React.ReactChild, scope: string, prefix = 'shady') {
+  if (_.isString(element) || _.isNumber(element) || _.isNil(element)) {
     return element;
   }
 
@@ -13,16 +13,16 @@ export default function applyScope(element: React.ReactChild, scopeName = 'shady
   };
 
   const props: props = {
-    key: _.uniqueId(`${scopeName}-`),
-    'data-scope': scopeName
+    key: _.uniqueId(`${scope}-`),
+    'data-scope': scope
   };
 
   if (_.has(element, 'props.children')) {
     const { children } = element.props;
 
     props.children = _.isArray(children)
-      ? children.map(c => applyScope(c, scopeName))
-      : applyScope(children, scopeName);
+      ? children.map(c => applyScope(c, scope))
+      : applyScope(children, scope, prefix);
   }
 
   return React.cloneElement(element, props);

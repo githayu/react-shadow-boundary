@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import applyScope from './toShadyDOM';
+import toShadyDOM from './toShadyDOM';
 import toShadyCSS from './toShadyCSS';
 
 interface ShadowProps {
@@ -40,11 +40,9 @@ export default (context: {[key: string]: any} = {}) => {
       if (!_.isUndefined(styles)) {
         if (_.isArray(styles)) {
           wrapper.unshift(styles.reduce((elements: React.ReactElement<any>[], style, index) => {
-            if (_.isString(style)) {
-              elements.push(
-                <style key={`${scopeName}-${index}`}>{style}</style>
-              )
-            }
+            elements.push(
+              <style key={`${scopeName}-${index}`}>{style}</style>
+            );
 
             return elements;
           }, []));
@@ -58,16 +56,16 @@ export default (context: {[key: string]: any} = {}) => {
     }
   }
 
-  class ShadyRoot extends React.Component<ShadyProps, ShadyState> {
+  class ShadyRoot extends ContextProvider<ShadyProps, ShadyState> {
     componentWillMount() {
-      const { styles, children, scopeName } = this.props;
+      const { styles, children, scopeName, prefix } = this.props;
 
       let styleElements: HTMLStyleElement[];
       let childElements: React.ReactNode;
 
       if (!_.isUndefined(styles)) {
         if (_.isArray(styles)) {
-          styleElements = styles.map(toShadyCSS.bind(this, scopeName));
+          styleElements = styles.map(style => toShadyCSS(style, scopeName));
 
         } else {
           styleElements = [ toShadyCSS(styles, scopeName) ]
@@ -76,9 +74,9 @@ export default (context: {[key: string]: any} = {}) => {
 
       if (!_.isUndefined(children)) {
         if (_.isArray(children)) {
-          childElements = children.reduce((elements: React.ReactNode[], element) => {
-            if (_.has(element, ['type', 'props', 'key', 'ref'])) {
-              elements.push(applyScope(element as React.ReactElement<any>));
+          childElements = children.reduce((elements: any[], element) => {
+            if (_.every(['type', 'props', 'key', 'ref'], _.partial(_.has, element))) {
+              elements.push(toShadyDOM(element as any, scopeName, prefix));
 
             } else if (_.isString(element) || _.isNumber(element)) {
               elements.push(element);
@@ -95,6 +93,12 @@ export default (context: {[key: string]: any} = {}) => {
       this.setState({
         childElements,
         styleElements
+      });
+    }
+
+    componentWillUnmount() {
+      this.state.styleElements.forEach(element => {
+        document.head.removeChild(element);
       });
     }
 

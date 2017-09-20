@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
+    "build": "yarn run clean && tsc",
     "clean": "rm -Rf ./dist/*"
   },
-  "main": "dist/index.js",
+  "main": "dist/ShadowDOM.js",
   "author": "Hayu",
   "license": "MIT",
   "repository": {
